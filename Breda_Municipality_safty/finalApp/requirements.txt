@@ -40,7 +40,6 @@ ephem==4.1.4
 et_xmlfile==1.1.0
 exceptiongroup==1.1.1
 executing==1.2.0
-expat==2.4.9
 fastcore==1.5.29
 fastjsonschema==2.17.1
 fiona==1.9.1
