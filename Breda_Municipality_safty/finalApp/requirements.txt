@@ -32,7 +32,6 @@ colorama==0.4.6
 contourpy==1.0.7
 convertdate==2.4.0
 cryptography==39.0.1
-cudatoolkit==11.2.2
 cudnn==8.1.0.77
 curl==7.88.1
 cycler==0.11.0
