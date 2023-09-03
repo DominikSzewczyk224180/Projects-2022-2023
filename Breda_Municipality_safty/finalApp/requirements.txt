@@ -13,7 +13,6 @@ asttokens==2.2.1
 astunparse==1.6.3
 attrs==22.1.0
 backcall==0.2.0
-backports==1.0
 backports.functools_lru_cache==1.6.4
 beautifulsoup4==4.12.2
 blas==1.0
