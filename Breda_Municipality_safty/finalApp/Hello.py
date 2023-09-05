@@ -354,7 +354,3 @@ with ai:
               Because of that, we believe that a data-driven approach will help us find insights into our business case and also build a valuable product that will be used by the municipality of Breda
         '''
     )
-
-
-if __name__ == "__main__":
-    st.run_app()
