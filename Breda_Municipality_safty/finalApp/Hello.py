@@ -48,7 +48,7 @@ if 'members' not in st.session_state:
 
 about_us_dict = {
     'Fedya': {
-        'image': r'C:\Users\domin\Desktop\Projects-2022-2023\Breda_Municipality_safty\finalApp\data\images\Fedya_cropped.png',
+        'image': 'Breda_Municipality_safty/finalApp/data/images/Fedya_cropped.png',
         'short-ov':'''
             - Data Scientisct
 
@@ -63,7 +63,7 @@ about_us_dict = {
         '''
     },
     'Thomas': {
-        'image': r'C:\Users\domin\Desktop\Projects-2022-2023\Breda_Municipality_safty\finalApp\data\images\Fedya_cropped.png',
+        'image': 'Breda_Municipality_safty/finalApp/data/images/thomas_cropped.png',
         'short-ov':'''
             - Data Scientist   
 
@@ -78,7 +78,7 @@ about_us_dict = {
         '''
     },
     'Romina': {
-        'image': r'C:\Users\domin\Desktop\Projects-2022-2023\Breda_Municipality_safty\finalApp\data\images\romina_cropped.png',
+        'image': 'Breda_Municipality_safty/finalApp/data/images/romina_cropped.png',
         'short-ov':'''
             - Data Analyst
 
@@ -93,7 +93,7 @@ about_us_dict = {
         '''
     },
     'Dominik': {
-        'image': r'C:\Users\domin\Desktop\Projects-2022-2023\Breda_Municipality_safty\finalApp\data\images\dominik_cropped.png',
+        'image': 'Breda_Municipality_safty/finalApp/data/images/dominik_cropped.png',
         'short-ov':'''
             - Data Scientisct
 
@@ -108,7 +108,7 @@ about_us_dict = {
         '''
     },
     'Amyr': {
-        'image': r'C:\Users\domin\Desktop\Projects-2022-2023\Breda_Municipality_safty\finalApp\data\images\amyr_cropped.png',
+        'image': 'Breda_Municipality_safty/finalApp/data/images/amyr_cropped.png',
         'short-ov':'''
             - Data Scientisct
 
@@ -354,7 +354,3 @@ with ai:
               Because of that, we believe that a data-driven approach will help us find insights into our business case and also build a valuable product that will be used by the municipality of Breda
         '''
     )
-
-
-if __name__ == "__main__":
-    st.run_app()
