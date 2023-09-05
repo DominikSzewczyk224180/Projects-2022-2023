@@ -63,7 +63,7 @@ about_us_dict = {
         '''
     },
     'Thomas': {
-        'image': r'C:\Users\domin\Desktop\Projects-2022-2023\Breda_Municipality_safty\finalApp\data\images\thomas_cropped.png',
+        'image': r'C:\Users\domin\Desktop\Projects-2022-2023\Breda_Municipality_safty\finalApp\data\images\Fedya_cropped.png',
         'short-ov':'''
             - Data Scientist   
 
