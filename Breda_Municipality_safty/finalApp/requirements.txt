@@ -63,3 +63,4 @@ intel-openmp==2023.1.0
 ipykernel==6.15.0
 ipython==8.11.0
 ipython-genutils==0.2.0
+streamlit_jupyter==0.2.1
