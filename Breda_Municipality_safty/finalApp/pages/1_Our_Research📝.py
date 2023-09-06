@@ -26,19 +26,19 @@ with tab1:
 
     st.title('Trend of crimes & Impact of nuisances                           ')
 
-    livability_index = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\livability_index (1).csv')
-    oops = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\cbs_breda_grid.gpkg')
+    livability_index = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/livability_index (1).csv')
+    oops = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/breda_grid_keys.gpkg')
 
-    boa_reg_2018 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2018.shp')
+    boa_reg_2018 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2018.shp')
 
-    boa_reg_2019 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2019.shp')
+    boa_reg_2019 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2019.shp')
 
-    boa_reg_2020 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2020.shp')
+    boa_reg_2020 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2020.shp')
 
-    boa_reg_2021 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2021.shp')
+    boa_reg_2021 = gpd.read_file('CBreda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2021.shp')
 
-    boa_reg_2022 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2022.shp')
-    breda_full_grid = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\Breda-Full_CBS-Grid.shp')
+    boa_reg_2022 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2022.shp')
+    breda_full_grid = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/Breda-Full_CBS-Grid.shp')
 
     def translate_name(crime):
 
@@ -178,7 +178,7 @@ with tab1:
     boa_reg_2022.Soort = boa_reg_2022.Soort.apply(lambda x: translate_name(x))
     boa_reg_2022 = rename_column(boa_reg_2022,'CBS_code','cbs_grid_code')
 
-    oops = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\cbs_breda_grid.gpkg')
+    oops = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/cbs_breda_grid.gpkg')
 
     nusiances_2018 = pd.merge(oops,boa_reg_2018, on='cbs_grid_code',how = 'outer')
     nusiances_2019 = pd.merge(oops,boa_reg_2019, on='cbs_grid_code',how = 'outer')
@@ -281,7 +281,7 @@ with tab1:
     if __name__ == '__main__':
         main()
 
-    CrimeVsQol= pd.read_csv(r"C:\Users\domin\Desktop\Team-based Working\Deliverables\data\data_for_model.csv", delimiter=",", skiprows=0)#, index_col= 0
+    CrimeVsQol= pd.read_csv("Breda_Municipality_safty/finalApp/data/data/data_for_model.csv", delimiter=",", skiprows=0)#, index_col= 0
     CrimeVsQol['date']=pd.to_datetime(CrimeVsQol['date'])
     CrimeVsQol['number_of_crimes'] = pd.to_numeric(CrimeVsQol['number_of_crimes'], errors='coerce')
     CrimeVsQol['livability_score'] = pd.to_numeric(CrimeVsQol['livability_score'], errors='coerce')
