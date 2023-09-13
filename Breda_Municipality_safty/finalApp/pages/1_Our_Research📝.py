@@ -110,7 +110,13 @@ with tab1:
     livability_index_grid = livability_index_grid[['geoid','livability_score','geometry']]
     livability_index_grid = livability_index_grid.dropna(subset = ['livability_score'])
 
-    recorded_crimes_Breda_per_month = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Processed agony.csv')
+    dtype_mapping = {
+    'Column1': float,
+    'Column2': int,
+    # Specify data types for other columns as needed
+                    }
+
+    recorded_crimes_Breda_per_month = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Processed agony.csv', dtype=dtype_mapping, low_memory=False)
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Soort misdrijf' : 'Type of Crime'})
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Perioden' : 'Periods'})
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Wijken en buurten' : 'Districts and neighbourhoods'})
