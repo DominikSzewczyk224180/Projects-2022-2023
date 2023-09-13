@@ -916,7 +916,7 @@ with tab3:
 
 
 
-    recorded_crimes_Breda_per_month = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Processed agony.csv')
+    recorded_crimes_Breda_per_month = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Processed agony.csv', dtype=dtype_mapping, low_memory=False)
 
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Soort misdrijf' : 'Type of Crime'})
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Perioden' : 'Periods'})
@@ -1013,7 +1013,7 @@ with tab3:
     st.write("After looking at this data we wanted to take a look at the correlation between the season of the year and the likelihood of crimes/nuisances happening")
 
 
-    recorded_crimes_Breda_per_month_for_plot = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Processed agony.csv', delimiter=",", skiprows=4)
+    recorded_crimes_Breda_per_month_for_plot = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Processed agony.csv', delimiter=",", skiprows=4, dtype=dtype_mapping, low_memory=False)
 
     recorded_crimes_Breda_per_month_for_plot = recorded_crimes_Breda_per_month_for_plot.drop([ '3','misdrijven','Unnamed: 6', 'Unnamed: 7', 'Unnamed: 8', 'Unnamed: 9',
         'Unnamed: 10', 'Unnamed: 11', 'Unnamed: 12', 'Unnamed: 13',
