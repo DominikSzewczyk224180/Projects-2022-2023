@@ -26,19 +26,19 @@ with tab1:
 
     st.title('Trend of crimes & Impact of nuisances                           ')
 
-    livability_index = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\livability_index (1).csv')
-    oops = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\cbs_breda_grid.gpkg')
+    livability_index = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/livability_index (1).csv')
+    oops = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/breda_grid_keys.gpkg')
 
-    boa_reg_2018 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2018.shp')
+    boa_reg_2018 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2018.shp')
 
-    boa_reg_2019 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2019.shp')
+    boa_reg_2019 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2019.shp')
 
-    boa_reg_2020 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2020.shp')
+    boa_reg_2020 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2020.shp')
 
-    boa_reg_2021 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2021.shp')
+    boa_reg_2021 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2021.shp')
 
-    boa_reg_2022 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2022.shp')
-    breda_full_grid = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\Breda-Full_CBS-Grid.shp')
+    boa_reg_2022 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2022.shp')
+    breda_full_grid = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/Breda-Full_CBS-Grid.shp')
 
     def translate_name(crime):
 
@@ -110,7 +110,13 @@ with tab1:
     livability_index_grid = livability_index_grid[['geoid','livability_score','geometry']]
     livability_index_grid = livability_index_grid.dropna(subset = ['livability_score'])
 
-    recorded_crimes_Breda_per_month = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Processed agony.csv')
+    dtype_mapping = {
+    'Column1': float,
+    'Column2': int,
+    # Specify data types for other columns as needed
+                    }
+
+    recorded_crimes_Breda_per_month = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Processed agony.csv', dtype=dtype_mapping, low_memory=False)
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Soort misdrijf' : 'Type of Crime'})
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Perioden' : 'Periods'})
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Wijken en buurten' : 'Districts and neighbourhoods'})
@@ -178,7 +184,7 @@ with tab1:
     boa_reg_2022.Soort = boa_reg_2022.Soort.apply(lambda x: translate_name(x))
     boa_reg_2022 = rename_column(boa_reg_2022,'CBS_code','cbs_grid_code')
 
-    oops = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\cbs_breda_grid.gpkg')
+    oops = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/cbs_breda_grid.gpkg')
 
     nusiances_2018 = pd.merge(oops,boa_reg_2018, on='cbs_grid_code',how = 'outer')
     nusiances_2019 = pd.merge(oops,boa_reg_2019, on='cbs_grid_code',how = 'outer')
@@ -281,7 +287,7 @@ with tab1:
     if __name__ == '__main__':
         main()
 
-    CrimeVsQol= pd.read_csv(r"C:\Users\domin\Desktop\Team-based Working\Deliverables\data\data_for_model.csv", delimiter=",", skiprows=0)#, index_col= 0
+    CrimeVsQol= pd.read_csv("Breda_Municipality_safty/finalApp/data/data/data_for_model.csv", delimiter=",", skiprows=0)#, index_col= 0
     CrimeVsQol['date']=pd.to_datetime(CrimeVsQol['date'])
     CrimeVsQol['number_of_crimes'] = pd.to_numeric(CrimeVsQol['number_of_crimes'], errors='coerce')
     CrimeVsQol['livability_score'] = pd.to_numeric(CrimeVsQol['livability_score'], errors='coerce')
@@ -344,67 +350,67 @@ with tab2:
         return df 
     
 
-    abuse = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\abuse_breda.csv',sep = ';')
+    abuse = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/abuse_breda.csv',sep = ';')
     abuse = rename_first_col(abuse)
 
-    accidents = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\accidents_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    accidents = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/accidents_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     accidents = rename_first_col(accidents)
                     
-    arms_trade = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\arms_trade_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    arms_trade = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/arms_trade_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     arms_trade = rename_first_col(arms_trade)
 
-    discrimination = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\discrimination_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    discrimination = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/discrimination_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     discrimination = rename_first_col(discrimination)
 
-    drug_trafficking = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\drug_trafficking_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    drug_trafficking = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/drug_trafficking_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     drug_trafficking = rename_first_col(drug_trafficking)
 
-    drugs_drinks_nuisances = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\drugs_drinks_nuisances_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    drugs_drinks_nuisances = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/drugs_drinks_nuisances_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     drugs_drinks_nuisances = rename_first_col(drugs_drinks_nuisances)
 
-    fire_explosion = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\fire_explosion_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    fire_explosion = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/fire_explosion_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     fire_explosion = rename_first_col(fire_explosion)
 
-    fireworks = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\firewroks_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    fireworks = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/firewroks_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     fireworks = rename_first_col(fireworks)
 
-    human_trafficking = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\human_trafficking.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    human_trafficking = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/human_trafficking.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     human_trafficking = rename_first_col(human_trafficking)
 
-    imigration_care = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\immigration_care_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    imigration_care = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/immigration_care_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     imigration_care = rename_first_col(imigration_care)
 
-    murders = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\murders_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    murders = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/murders_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     murders = rename_first_col(murders)
 
-    open_violence = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\open_violence_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    open_violence = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/open_violence_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     open_violence = rename_first_col(open_violence)
 
-    people_smuggling = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\people_smuggling_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    people_smuggling = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/people_smuggling_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     people_smuggling = rename_first_col(people_smuggling)
 
-    pick_pocketing = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\pick_pocketing_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    pick_pocketing = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/pick_pocketing_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     pick_pocketing = rename_first_col(pick_pocketing)
 
-    robbery = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\robbery_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    robbery = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/robbery_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     robbery = rename_first_col(robbery)
 
-    shoplifting = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\shoplifting_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    shoplifting = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/shoplifting_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     shoplifting = rename_first_col(shoplifting)
 
-    street_robbery = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\street_robbery_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    street_robbery = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/street_robbery_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     street_robbery = rename_first_col(street_robbery)
 
-    threat = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\threar_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    threat = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/threar_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     threat = rename_first_col(threat)
 
-    home_theft = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\total_num_home_theft_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    home_theft = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/total_num_home_theft_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     home_theft = rename_first_col(home_theft)
 
-    under_influence_road = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\under_influence_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    under_influence_road = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/under_influence_breda.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     under_influence_road = rename_first_col(under_influence_road)
 
-    total_crimes = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\recorded_crimes_breda_reg\total_crimes_number_breda_regions.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
+    total_crimes = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/recorded_crimes_breda_reg/total_crimes_number_breda_regions.csv',sep = ';', skiprows=[0,1,2,3,5], decimal='.')
     total_crimes = rename_first_col(total_crimes)
 
 
@@ -627,17 +633,17 @@ with tab2:
     st.plotly_chart(fig, use_container_width=True,)
 
 
-    boa_reg_2018 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2018.shp')
+    boa_reg_2018 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2018.shp')
 
-    boa_reg_2019 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2019.shp')
+    boa_reg_2019 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2019.shp')
 
-    boa_reg_2020 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2020.shp')
+    boa_reg_2020 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2020.shp')
 
-    boa_reg_2021 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2021.shp')
+    boa_reg_2021 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2021.shp')
 
-    boa_reg_2022 = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\CC_2022.shp')
+    boa_reg_2022 = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/CC_2022.shp')
     
-    breda_full_grid = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Buas_BOAregistrion\Breda-Full_CBS-Grid.shp')
+    breda_full_grid = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/Buas_BOAregistrion/Breda-Full_CBS-Grid.shp')
 
 
     def translate_name(crime):
@@ -697,7 +703,7 @@ with tab2:
     boa_reg_2022 = rename_column(boa_reg_2022,'CBS_code','cbs_grid_code')
 
 
-    oops = gpd.read_file(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\breda_grid_keys.gpkg')
+    oops = gpd.read_file('Breda_Municipality_safty/finalApp/data/data/breda_grid_keys.gpkg')
 
     nusiances_2018 = pd.merge(oops,boa_reg_2018, on='cbs_grid_code',how = 'outer')
     nusiances_2019 = pd.merge(oops,boa_reg_2019, on='cbs_grid_code',how = 'outer')
@@ -898,7 +904,7 @@ with tab2:
 
 with tab3:
 
-    crimes_reports_per_year_Breda = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Misdrijven__soort_misdrijf__plaats_23052023_151236.csv', delimiter = ';')
+    crimes_reports_per_year_Breda = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Misdrijven__soort_misdrijf__plaats_23052023_151236.csv', delimiter = ';')
 
     keep = [0,1,2,3,4,5,6,7,8,9,10]
 
@@ -910,7 +916,7 @@ with tab3:
 
 
 
-    recorded_crimes_Breda_per_month = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Processed agony.csv')
+    recorded_crimes_Breda_per_month = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Processed agony.csv', dtype=dtype_mapping, low_memory=False)
 
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Soort misdrijf' : 'Type of Crime'})
     recorded_crimes_Breda_per_month = recorded_crimes_Breda_per_month.rename(columns={'Perioden' : 'Periods'})
@@ -962,7 +968,7 @@ with tab3:
     st.write("From the line plots above, we can see a downhill trend in the number of crimes. The number of registered crimes per month decreased by 600 since 2012. This shows that the current approach and development of technologies help police to prevent crimes and provide safety.")
 
 
-    recorded_nuisances_Breda_per_year = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Breda_nuisance.csv')
+    recorded_nuisances_Breda_per_year = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Breda_nuisance.csv')
 
     recorded_nuisances_Breda_per_year = recorded_nuisances_Breda_per_year.drop(['2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013', '2012'], axis=1)
 
@@ -1007,7 +1013,7 @@ with tab3:
     st.write("After looking at this data we wanted to take a look at the correlation between the season of the year and the likelihood of crimes/nuisances happening")
 
 
-    recorded_crimes_Breda_per_month_for_plot = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\Processed agony.csv', delimiter=",", skiprows=4)
+    recorded_crimes_Breda_per_month_for_plot = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/Processed agony.csv', delimiter=",", skiprows=4, dtype=dtype_mapping, low_memory=False)
 
     recorded_crimes_Breda_per_month_for_plot = recorded_crimes_Breda_per_month_for_plot.drop([ '3','misdrijven','Unnamed: 6', 'Unnamed: 7', 'Unnamed: 8', 'Unnamed: 9',
         'Unnamed: 10', 'Unnamed: 11', 'Unnamed: 12', 'Unnamed: 13',

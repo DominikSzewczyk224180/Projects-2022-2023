@@ -15,9 +15,9 @@ predictions_dictionary = {}
 
 predictons_created = False
 
-df = pd.read_csv(r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\data_for_model.csv')
+df = pd.read_csv('Breda_Municipality_safty/finalApp/data/data/data_for_model.csv')
 
-def get_data_for_model(f_path = r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\data_for_model.csv'):
+def get_data_for_model(f_path = 'Breda_Municipality_safty/finalApp/data/data/data_for_model.csv'):
 
     df = pd.read_csv(f_path,parse_dates=True).drop(columns=['Unnamed: 0'])
     df.date = pd.to_datetime(df.date)
@@ -28,7 +28,7 @@ def get_data_for_model(f_path = r'C:\Users\domin\Desktop\Team-based Working\Deli
 
 df_for_predictions = get_data_for_model()
 
-def get_dictionary_for_model(f_path = r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\data_for_model.csv'):
+def get_dictionary_for_model(f_path = 'Breda_Municipality_safty/finalApp/data/data/data_for_model.csv'):
 
     df = get_data_for_model(f_path)
 
@@ -57,7 +57,7 @@ def get_dictionary_for_model(f_path = r'C:\Users\domin\Desktop\Team-based Workin
 
 crimes_dictionary = get_dictionary_for_model()
 
-def create_models_for_neighbourhoods(crimes_dictionary,f_path = r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\data_for_model.csv'):
+def create_models_for_neighbourhoods(crimes_dictionary,f_path = 'Breda_Municipality_safty/finalApp/data/data/data_for_model.csv'):
 
     df = get_data_for_model(f_path)
 
@@ -72,7 +72,7 @@ def create_models_for_neighbourhoods(crimes_dictionary,f_path = r'C:\Users\domin
 models_dict = create_models_for_neighbourhoods(crimes_dictionary)
 
 
-def get_predictions(future_dates, models_dict, all_neighbourhoods = True, spec_neighbourhoods = [], f_path = r'C:\Users\domin\Desktop\Team-based Working\Deliverables\data\data_for_model.csv'):
+def get_predictions(future_dates, models_dict, all_neighbourhoods = True, spec_neighbourhoods = [], f_path = 'Breda_Municipality_safty/finalApp/data/data/data_for_model.csv'):
 
     if all_neighbourhoods:
 
